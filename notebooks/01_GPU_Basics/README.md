@@ -29,9 +29,12 @@ Understand why a GPU is faster than a CPU -- and, just as importantly, when it i
 | Experiment | Result |
 | --- | --- |
 | Hardware | Tesla T4, 40 SMs, 2560 CUDA cores, 15.64 GB VRAM |
-| CPU -> GPU transfer (pageable) | ~4.8 GB/s |
-| VRAM bandwidth (measured) | ~230-245 GB/s |
-| Fake vs real TFLOPS (no sync vs sync) | 261.8 (fake) vs 4.2 (real) |
+| CPU -> GPU transfer (pageable) | ~4.6 GB/s |
+| VRAM bandwidth (measured) | ~239 GB/s (75% of peak) |
+| Fake vs real TFLOPS (no sync vs sync) | 231.3 (fake) vs 4.4 (real) |
 | CPU vs GPU matmul crossover | n ~ 128 |
-| Matmul speedup at n=4096 | 17.2x (CPU: 248 GFLOPS, GPU: 4258 GFLOPS) |
-| Batch 1 -> 64 time increase (8192x8192 fp16) | ~1.36x, for 64x more work |
+| Matmul speedup at n=4096 | 19.1x (CPU: ~231 GFLOPS, GPU: ~4403 GFLOPS) |
+| Batch 1 -> 64 time increase (8192x8192 fp16) | ~1.32x, for 64x more work |
+
+Note: exact speedup/TFLOPS figures vary 10-15% run to run on this shared GPU --
+the structural findings (crossover point, overhead floor) are consistent.
